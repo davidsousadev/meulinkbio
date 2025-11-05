@@ -16,7 +16,7 @@ const profiles = {
       { title: "TikTok", url: "https://cutme.vercel.app/tiktok", icon: "bxl-tiktok" },
       { title: "Instagram", url: "https://cutme.vercel.app/instagram", icon: "bxl-instagram" },
       { title: "Facebook", url: "https://cutme.vercel.app/facebook", icon: "bxl-facebook" },
-      { title: "Twitter", url: "https://cutme.vercel.app/twitter", icon: "bxl-twitter" },
+      { title: "X", url: "https://cutme.vercel.app/x", icon: "bxl-twitter" },
       { title: "Snapchat", url: "https://cutme.vercel.app/snapchat", icon: "bxl-snapchat" },
       { title: "YouTube", url: "https://cutme.vercel.app/youtube", icon: "bxl-youtube" },
       { title: "Twitch", url: "https://cutme.vercel.app/twitch", icon: "bxl-twitch" }
