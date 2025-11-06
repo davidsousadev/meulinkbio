@@ -3,7 +3,7 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Dados mock
+// ===== MOCK DE DADOS =====
 const profiles = {
   davidsousadev: {
     name: "David Sousa",
@@ -24,8 +24,10 @@ const profiles = {
   }
 };
 
+// ===== CONFIGURAÇÃO DO EXPRESS =====
 app.use(express.static(path.join(__dirname, "../public")));
 
+// ===== RODAPÉ =====
 const footerHtml = () => {
   const year = new Date().getFullYear();
   return `<footer class="footer">
@@ -33,10 +35,33 @@ const footerHtml = () => {
           </footer>`;
 };
 
+// ===== FUNÇÃO DE SCRIPT DO MODO ESCURO =====
+const themeScript = `
+  <script>
+    const btn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Verifica o tema salvo
+    if (localStorage.getItem('theme') === 'light') {
+      body.classList.add('light-mode');
+      btn.innerHTML = "<i class='bx bxs-sun'></i>";
+    }
+
+    btn.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      const isLight = body.classList.contains('light-mode');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      btn.innerHTML = isLight ? "<i class='bx bxs-sun'></i>" : "<i class='bx bxs-moon'></i>";
+    });
+  </script>
+`;
+
+// ===== ROTA PRINCIPAL =====
 app.get("/:nickname", (req, res) => {
   const { nickname } = req.params;
   const profile = profiles[nickname];
 
+  // ===== Página 404 =====
   if (!profile) {
     const html404 = `
       <!DOCTYPE html>
@@ -46,20 +71,24 @@ app.get("/:nickname", (req, res) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Página não encontrada</title>
         <link rel="stylesheet" href="/style.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
       </head>
       <body>
+        <button id="theme-toggle" class="theme-toggle"><i class='bx bxs-moon'></i></button>
         <div class="container not-found">
           <h1>404</h1>
           <h2>Página não encontrada</h2>
           <p>Ops! O perfil que você está procurando não existe.</p>
         </div>
         ${footerHtml()}
+        ${themeScript}
       </body>
       </html>
     `;
     return res.status(404).send(html404);
   }
 
+  // ===== Página de Perfil =====
   const linksHtml = profile.links.map(
     link => `<a href="${link.url}" target="_blank" class="link">
                <i class='bx ${link.icon}'></i> <span>${link.title}</span>
@@ -72,11 +101,12 @@ app.get("/:nickname", (req, res) => {
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>${profile.name} | ${profile.nickname} </title>
+      <title>${profile.name} | ${profile.nickname}</title>
       <link rel="stylesheet" href="/style.css">
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     </head>
     <body>
+      <button id="theme-toggle" class="theme-toggle"><i class='bx bxs-moon'></i></button>
       <div class="container">
         <div class="profile-photo">
           <img src="${profile.photo}" alt="${profile.name}">
@@ -88,6 +118,7 @@ app.get("/:nickname", (req, res) => {
         </div>
       </div>
       ${footerHtml()}
+      ${themeScript}
     </body>
     </html>
   `;
@@ -95,4 +126,5 @@ app.get("/:nickname", (req, res) => {
   res.send(html);
 });
 
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+// ===== INICIALIZA SERVIDOR =====
+app.listen(PORT, () => console.log(`🚀 Servidor rodando em http://localhost:${PORT}`));

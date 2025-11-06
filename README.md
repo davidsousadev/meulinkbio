@@ -1,5 +1,7 @@
 # MeuLinkBio
 
+![Banner](https://raw.githubusercontent.com/meulinkbio/buy-tech/refs/heads/main/public/images/banner.png)
+
 Um projeto simples de **Link Bio** feito com **Node.js e Express**, usando **HTML/CSS puro** e ícones do **Boxicons**.  
 Permite criar perfis com foto, nickname e links de redes sociais, simulando perfis do tipo “Link na Bio” do Instagram.
 
