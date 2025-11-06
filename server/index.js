@@ -12,7 +12,7 @@ const profiles = {
     links: [
       { title: "GitHub", url: "https://cutme.vercel.app/github", icon: "bxl-github" },
       { title: "LinkedIn", url: "https://cutme.vercel.app/linkedin", icon: "bxl-linkedin" },
-      { title: "Portfólio", url: "https://cutme.vercel.app/portifolio", icon: "bxs-briefcase" },
+      { title: "Portfólio", url: "https://cutme.vercel.app/portfolio", icon: "bxs-briefcase" },
       { title: "TikTok", url: "https://cutme.vercel.app/tiktok", icon: "bxl-tiktok" },
       { title: "Instagram", url: "https://cutme.vercel.app/instagram", icon: "bxl-instagram" },
       { title: "Facebook", url: "https://cutme.vercel.app/facebook", icon: "bxl-facebook" },
